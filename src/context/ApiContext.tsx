@@ -39,6 +39,7 @@ export const ApiProvider = ({ children }: ApiProviderProps) => {
   };
 
   const obtenerFrase = async () => {
+    setLoading(true);
     const path = "/phrases/random";
     try {
       const response = await apiService.getData(path);
