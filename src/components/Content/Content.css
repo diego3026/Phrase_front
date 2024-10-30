@@ -1,0 +1,101 @@
+.content{
+    flex: 1;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content__frase{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 70%;
+    height: 70%;
+    border-radius: 20px;
+    text-align: center;
+    background-color: var(--rosa_palido);
+}
+
+.frase{
+    font-family: "Raleway", sans-serif;
+    font-size: 34px;
+    color: var(--blanco);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.autor{
+    font-family: "Dancing Script", cursive;
+    font-size: 25px;
+    color: var(--blanco);
+    padding-bottom: 15px;
+}
+
+@media screen and (max-width: 900px){
+    .content__frase{
+        width: 60%;
+        height: 55%;
+    }
+
+    .frase{
+        font-size: 28px;
+    }
+
+    .autor{
+        font-size: 23px;
+    }
+}
+
+@media screen and (max-width:600px){
+    .content__frase{
+        width: 50%;
+        height: 50%;
+    }
+
+    .frase{
+        font-size: 22px;
+    }
+
+    .autor{
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .header__logo{
+        width: 170px !important;
+        height: 45px !important;
+    }
+    
+    .content__frase{
+        width: 55%;
+        height: 40%;
+    }
+
+    .frase{
+        font-size: 20px;
+    }
+
+    .autor{
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 500px){
+    
+    .content__frase{
+        width: 60%;
+        height: 40%;
+    }
+
+    .frase{
+        font-size: 14px;
+    }
+
+    .autor{
+        font-size: 12px;
+    }
+}

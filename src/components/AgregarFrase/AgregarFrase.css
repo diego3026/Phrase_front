@@ -1,0 +1,40 @@
+.contentFrase{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+}
+
+.contentFrase__form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form__bottom{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bottom__autor{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+}
+
+.autor__titulo{
+    font-family: cursive;
+    font-style: italic;
+    font-weight: 500;
+    padding-bottom: 5px;
+    margin: 0;
+}
+
+.contentFrase__titulo{
+    margin: 0;
+    text-align: center;
+    font-family: cursive;
+}

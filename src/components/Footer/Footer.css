@@ -1,0 +1,49 @@
+.footer {
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+.footer__content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.left{
+    padding-top: 5px;
+}
+
+.right{
+    padding-top: 4px;
+}
+
+.left, .right{
+    border: none;
+    background: transparent;
+}
+
+.buttonRefresh, .buttonAdd {
+    position: absolute;
+    border: none;
+    background: transparent;
+    padding: 0;
+}
+
+.buttonZindex{
+    z-index: 1000;
+}
+
+.button_none{
+    opacity: 0;
+}
+
+.content__options{
+    display: flex;
+    align-items: center;
+    width: 56px;
+}

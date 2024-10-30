@@ -1,0 +1,20 @@
+:root {
+  background-color: var(--blanco);
+  --blanco: #FFFFFF;
+  --rosa_claro: #E98B77;
+  --rosa_oscuro: #E76F69;
+  --rosa_oscuro_palido: #E7786D;
+  --rosa_palido: #E88172;
+  --negro: #000000; 
+}
+
+body{
+  padding: 0;
+  margin: 0;
+}
+
+#root{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
