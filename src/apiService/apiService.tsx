@@ -1,9 +1,12 @@
 // apiService.js
 import axios from 'axios';
 
+
+// http://localhost:8080 desarrollo
+
 // Configura la instancia de Axios
 const api = axios.create({
-  baseURL: 'http://localhost:8080',
+  baseURL: 'https://mensaje-api.azurewebsites.net',
   timeout: 10000, 
   headers: {
     'Content-Type': 'application/json',
