@@ -12,7 +12,7 @@ const Content = () => {
 
     return (
         <div className="content">
-            {loading ? (
+            {loading || data.phrase==='' ? (
                 <CircularProgress size={"40px"} sx={{color:"var(--rosa_oscuro)"}}/>
             ):(
             <div className="content__frase">

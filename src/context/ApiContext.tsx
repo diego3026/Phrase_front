@@ -21,8 +21,8 @@ export const ApiProvider = ({ children }: ApiProviderProps) => {
   const [error, setError] = useState<string | null>(null);
 
   const crearFrase = async (data: any) => {
-    const path = "/phrases";
     setLoading(true);
+    const path = "/phrases";
     try {
       const response = await apiService.postData(path, data);
 
