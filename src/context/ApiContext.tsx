@@ -5,10 +5,11 @@ interface ApiContextType {
   data: any;
   loading: boolean;
   error: string | null;
-  fetchFrase: (path: string) => Promise<void>;
+  crearFrase: (data: any) => Promise<void>;
+  obtenerFrase: () => Promise<void>;
 }
 
-const ApiContext = createContext<ApiContextType | undefined>(undefined)
+const ApiContext = createContext<ApiContextType | undefined>(undefined);
 
 interface ApiProviderProps {
   children: ReactNode;
@@ -16,28 +17,55 @@ interface ApiProviderProps {
 
 export const ApiProvider = ({ children }: ApiProviderProps) => {
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const fetchFrase = async (path: string) => {
+  const crearFrase = async (data: any) => {
+    const path = "/phrases";
     setLoading(true);
     try {
-      const response = await apiService.getData(path);
-      setData(response.data);
+      const response = await apiService.postData(path, data);
+
+      if (response.data) {
+        setLoading(false);
+        setData(response.data);
+      } else {
+        setLoading(true);
+      }
     } catch (err: any) {
       setError(err.message);
-    } finally {
-      setLoading(false);
+      setLoading(true);
+    }
+  };
+
+  const obtenerFrase = async () => {
+    const path = "/phrases/random";
+    try {
+      const response = await apiService.getData(path);
+      if (response.data) {
+        setLoading(false);
+        setData(response.data);
+      } else {
+        setLoading(true);
+      }
+    } catch (err: any) {
+      setError(err.message);
+      setLoading(true);
     }
   };
 
   return (
-    <ApiContext.Provider value={{ data, loading, error, fetchFrase }}>
+    <ApiContext.Provider value={{ data, loading, error, crearFrase, obtenerFrase }}>
       {children}
     </ApiContext.Provider>
   );
 };
 
+// Hook personalizado para consumir el contexto
 export const useApi = () => {
-  return useContext(ApiContext);
+  const context = useContext(ApiContext);
+  if (!context) {
+    throw new Error("useApi debe usarse dentro de un ApiProvider");
+  }
+  return context;
 };

@@ -1,12 +1,15 @@
 import { BrowserRouter } from "react-router-dom";
 import Routes from './routes/Routes'
+import { ApiProvider } from "./context/ApiContext";
 
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes />
-      </BrowserRouter>
+      <ApiProvider>
+        <BrowserRouter>
+          <Routes />
+        </BrowserRouter>
+      </ApiProvider>
     </>
   )
 }

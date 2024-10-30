@@ -6,22 +6,33 @@ import NavigateBeforeOutlinedIcon from '@mui/icons-material/NavigateBeforeOutlin
 import Dialog from '@mui/material/Dialog';
 import { useState } from "react";
 import { motion } from "framer-motion";
-import AgregarFrase from '../../components/AgregarFrase/AgregarFrase'
+import AgregarFrase from '../../components/AgregarFrase/AgregarFrase';
+import { useApi } from "../../context/ApiContext";
 import './Footer.css'
 
 const Footer = () => {
     const [isButtonVisibleRefresh, setIsTopButtonVisibleRefresh] = useState(true);
     const [isButtonVisibleAdd, setIsTopButtonVisibleAdd] = useState(false);
     const [open, setOpen] = useState(false);
+    const { crearFrase, obtenerFrase } = useApi();
 
     const handleClickOpen = () => {
-      setOpen(true);
+        setOpen(true);
     };
-  
-    const handleClose = () => {
-      setOpen(false);
+
+    const handleClose = (frase: any, autor: any) => {
+        setOpen(false);
+        crearFrase({
+            phrase:frase,
+            author:autor
+        });
     };
-  
+
+    const handleRefresh = () => {
+        console.log("Hola handle refresh");
+        obtenerFrase();
+    }
+
     const handleButtonClickLeft = () => {
         setIsTopButtonVisibleRefresh(!isButtonVisibleRefresh);
         setIsTopButtonVisibleAdd(!isButtonVisibleAdd);
@@ -37,7 +48,7 @@ const Footer = () => {
             <div className="footer__content">
                 <div className="content__left">
                     <motion.button
-                        className={isButtonVisibleRefresh ? 'left button_none':'left'}
+                        className={isButtonVisibleRefresh ? 'left button_none' : 'left'}
                         whileHover={{ scale: 1 }}
                         onClick={handleButtonClickLeft}
                     >
@@ -46,30 +57,30 @@ const Footer = () => {
                 </div>
                 <div className="content__options">
                     <motion.button
-                        className={isButtonVisibleRefresh ? 'buttonRefresh buttonZindex':'buttonRefresh'}
+                        className={isButtonVisibleRefresh ? 'buttonRefresh buttonZindex' : 'buttonRefresh'}
                         whileHover={{ scale: 1.1 }}
                         animate={{ opacity: isButtonVisibleRefresh ? 1 : 0 }}
                         transition={{ duration: 0.3 }}
                     >
-                        <Fab variant="circular" sx={{background:"var(--blanco)"}}>
-                            <RefreshIcon sx={{color:"var(--rosa_oscuro)"}}/>
+                        <Fab variant="circular" sx={{ background: "var(--blanco)" }} onClick={handleRefresh}>
+                            <RefreshIcon sx={{ color: "var(--rosa_oscuro)" }} />
                         </Fab>
                     </motion.button>
-                    
+
                     <motion.button
-                        className={isButtonVisibleAdd ? 'buttonAdd buttonZindex':'buttonAdd'}
-                        whileHover={{ scale: 1.1 }} 
+                        className={isButtonVisibleAdd ? 'buttonAdd buttonZindex' : 'buttonAdd'}
+                        whileHover={{ scale: 1.1 }}
                         animate={{ opacity: isButtonVisibleAdd ? 1 : 0 }}
                         transition={{ duration: 0.3 }}
                     >
-                        <Fab variant="circular" sx={{background:"var(--blanco)"}} onClick={handleClickOpen}>
-                            <AddIcon sx={{color:"var(--rosa_oscuro)"}}/>
+                        <Fab variant="circular" sx={{ background: "var(--blanco)" }} onClick={handleClickOpen}>
+                            <AddIcon sx={{ color: "var(--rosa_oscuro)" }} />
                         </Fab>
                     </motion.button>
                 </div>
                 <div className="content__right">
                     <motion.button
-                        className={isButtonVisibleAdd ? 'right button_none':'right'}
+                        className={isButtonVisibleAdd ? 'right button_none' : 'right'}
                         whileHover={{ scale: 1 }}
                         onClick={handleButtonClickRight}
                     >
@@ -85,7 +96,7 @@ const Footer = () => {
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
-                <AgregarFrase close={handleClose}/>
+                <AgregarFrase close={handleClose} />
             </Dialog>
         </div>
     )

@@ -1,13 +1,27 @@
+import { CircularProgress } from '@mui/material';
+import { useApi } from '../../context/ApiContext';
 import './Content.css'
+import { useEffect } from 'react';
 
 const Content = () => {
+    const { data, loading, obtenerFrase } = useApi();
+
+    useEffect(() => {
+        obtenerFrase();
+    },[])
+
     return (
         <div className="content">
+            {loading ? (
+                <CircularProgress size={"40px"} sx={{color:"var(--rosa_oscuro)"}}/>
+            ):(
             <div className="content__frase">
-                <div className="frase">It'S Time to Organize your Day!</div>
-                <div className="autor">~Diego Oñate</div>
-            </div>
-        </div>
+                <div className="frase">{data.phrase}</div>
+                <div className="autor">~{data.author}</div>
+            </div >
+            )}
+            
+        </div >
     )
 }
 

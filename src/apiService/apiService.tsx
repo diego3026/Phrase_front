@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // Configura la instancia de Axios
 const api = axios.create({
-  baseURL: 'https://localhost:8080',
+  baseURL: 'http://localhost:8080',
   timeout: 10000, 
   headers: {
     'Content-Type': 'application/json',
@@ -16,9 +16,11 @@ api.interceptors.response.use(
   (error) => {
 
     // Manejo de errores globales (como errores de autenticación)
-    if (error.response && error.response.status === 401) {
+    if (error.response) {
       // Manejo de errores globales (como errores de autenticación)
       console.error("No autorizado, redireccionando al login...");
+    }else{
+      console.error(error);
     }
     return Promise.reject(error);
   }
